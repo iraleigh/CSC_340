@@ -12,18 +12,36 @@ int main() {
 }
 void random_access(){
 	cout<<"\nAccessing File...\n";
-	fstream file("file1.txt");
+	fstream file("file1.txt", fstream::app);
 	if (file.is_open()){
-		file.seekp(30000);
-		file.seekg(30000);
-		cout <<"\nInserting numbers at line 6000...\n";
-		int i = 0;
-		do {
-			cout << (int)(file.get() - 48);
-			file.seekg(1,file.cur);
-			i++;
-		} while (i<4);
-		cout <<"\nRandom Access, success.\n";
+		cout <<"\nInserting numbers at line 0000...\n";
+		for (int i = 81; i >= 77; i--) {
+		file << "77" << i << "\n";
+		}
+
+		file.close();
+		file.open("file1.txt");
+		file.seekg(-25,ios::end);
+		char * numbers = new char(25);
+		file.read(numbers,25);
+		// cout << file.tellg() << endl;
+		// cout << file.tellp() << endl;
+
+		for (int j = 0; j < 4000; j++) {
+			file.seekg((-30-(j*5)),ios::end);
+			string line;
+			getline(file,line);
+			file.seekp((-5-(j*5)),ios::end);
+			// cout << file.tellp() << endl;
+			file << line << "\n";
+			// cout << file.tellg() << endl;
+			//
+			// cout << file.tellp() << endl;
+		}
+		file.seekp(30000,ios::beg);
+		file << numbers;
+		file.close();
+		delete numbers;
 	} else {
 		cout <<"file1.txt is could not be opened";
 	}
