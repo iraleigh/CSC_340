@@ -24,19 +24,12 @@ void random_access(){
 		file.seekg(-25,ios::end);
 		char * numbers = new char(25);
 		file.read(numbers,25);
-		// cout << file.tellg() << endl;
-		// cout << file.tellp() << endl;
-
 		for (int j = 0; j < 4000; j++) {
 			file.seekg((-30-(j*5)),ios::end);
 			string line;
 			getline(file,line);
 			file.seekp((-5-(j*5)),ios::end);
-			// cout << file.tellp() << endl;
 			file << line << "\n";
-			// cout << file.tellg() << endl;
-			//
-			// cout << file.tellp() << endl;
 		}
 		file.seekp(30000,ios::beg);
 		file << numbers;
