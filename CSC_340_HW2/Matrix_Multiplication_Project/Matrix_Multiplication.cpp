@@ -2,7 +2,10 @@
 #include <vector>
 
 using namespace std;
-
+/*
+ * @parameters: two references to matrices A and B of nxm and mxn respectively
+ * @return: a matrix of nxn that is the product of Matrix A and B.
+ */
 vector< vector <int> > multiply_matricies(vector< vector<int> >&, vector< vector<int> >&);
 
 int main(){
@@ -13,6 +16,7 @@ int main(){
 	cin >> A_rows;
 	cout << "How many columns are in matrix A? ";
 	cin >> A_columns;
+
 	A.resize(A_rows);
 	for (int a = 0; a < A.size(); a++){
 		A[a].resize(A_columns);
@@ -46,7 +50,9 @@ int main(){
 
 
 	cout << "The product of A and B is: \n";
+
 	C = multiply_matricies(A,B);
+
 	for (int i = 0; i < C.size();i++){
 		for(int j = 0; j < C[0].size(); j++){
 			cout << C[i][j] << " ";
@@ -58,15 +64,15 @@ int main(){
 
 vector< vector<int > > multiply_matricies(vector< vector<int> >& A, vector< vector<int> >& B){
 	vector< vector<int> > C;
-	C.resize(B[0].size());
-	for (int c = 0; c < C.size(); c++){
-		C[c].resize(A.size());
+	C.resize(B[0].size()); 								// Create a matrix
+	for (int c = 0; c < C.size(); c++){   // of the correct size
+		C[c].resize(A.size());              // with respects to A*B.
 	}
-	for (int i = 0; i < C.size();i++){
-		for(int j = 0; j < C[0].size(); j++){
-			 for(int k = 0; k < A[0].size(); k++){
-				C[i][j] += A[i][k] * B[k][j];
-			}
+	for (int i = 0; i < C.size();i++){           // For each row in
+		for(int j = 0; j < C[0].size(); j++){      // each column of C,
+			 for(int k = 0; k < A[0].size(); k++){   // calculate the summation
+				C[i][j] += A[i][k] * B[k][j];          // of products for each element
+			}                                        // in A and B
 		}
 	}
 	return C;
