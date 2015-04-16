@@ -1,3 +1,10 @@
+/**
+*  Name      : Word Frequency Counter
+*  Author    : Iain Raleigh
+*  Student ID: 915133718
+*  Email     : iraleigh@mail.sfsu.edu
+*  Compiler  : g++
+*/
 #include <iostream>
 #include <vector>
 
