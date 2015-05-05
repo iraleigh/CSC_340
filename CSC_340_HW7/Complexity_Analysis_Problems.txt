@@ -1,0 +1,51 @@
+1 int pow_17(int n){
+2    if ( n==1)
+3      return 17;
+4    if ( n > 1)
+5      return ( 17 * pow_17(n-1) );
+6 }
+
+Base Case:
+    T(n) = c0 + c1  n = 1
+Recursive Case:
+    T(n) = c2 + T(n-1)  n > 1
+
+
+
+Merge Sort
+
+
+1  TopDownMerge(A[], iBegin, iMiddle, iEnd, B[])
+2  {
+3      i0 = iBegin, i1 = iMiddle;
+4      for (j = iBegin; j < iEnd; j++) {
+5          if (i0 < iMiddle && (i1 >= iEnd || A[i0] <= A[i1]))
+6              B[j] = A[i0];
+7              i0 = i0 + 1;
+8          else
+9              B[j] = A[i1];
+10             i1 = i1 + 1;
+11     }
+12  }
+
+1  TopDownSplitMerge(A[], iBegin, iEnd, B[])
+2  {
+3     if(iEnd - iBegin < 2)
+4         return;
+5     iMiddle = (iEnd + iBegin) / 2;
+6     TopDownSplitMerge(A, iBegin,  iMiddle, B);
+7     TopDownSplitMerge(A, iMiddle,    iEnd, B);
+8     TopDownMerge(A, iBegin, iMiddle, iEnd, B);
+9     CopyArray(B, iBegin, iEnd, A);
+10 }
+
+TopDownMerge => TDM(n)
+
+  TDM(n) = c0 + c1(n+1) + (c2 + c3 + c4)n
+
+
+TopDownSplitMerge => TDSM(n)
+Base Case:
+  TDSM(n) = c0 +c1    n = 1
+Recursive Case:
+  TDSM(n) = c0 + c2 + TDSM(n/2) + TDSM(n/2) + TDM(n) + CopyArray(n)
